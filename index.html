@@ -59,7 +59,7 @@
            A4 인쇄 전용 스타일 (고객 미팅용)
            ========================================= */
         @media print {
-            @page { size: A4; margin: 12mm; }
+            @page { size: A4; margin: 10mm; } /* 여백을 10mm로 줄여 공간 확보 */
             body { background: #fff !important; color: #000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             
             /* 웹 전용 UI 숨김 */
@@ -67,8 +67,13 @@
                 display: none !important; 
             }
             
-            /* 인쇄 전용 영역 표시 */
-            .print-only { display: block !important; }
+            /* 인쇄 전용 영역 표시 및 A4 한 장 꽉 차게 늘림 */
+            .print-only { 
+                display: flex !important; 
+                flex-direction: column; 
+                height: 275mm; /* A4 세로 사이즈에서 상하 여백을 뺀 높이로 꽉 채움 */
+                justify-content: space-between;
+            }
             
             /* 기본 여백 제거 */
             main { padding: 0 !important; margin: 0 !important; }
@@ -113,7 +118,7 @@
              A4 인쇄 전용 레이아웃 (웹에서는 숨김 처리)
              ========================================== -->
         <div class="print-only hidden w-full font-sans text-sm">
-            <div class="border-b-2 border-slate-800 pb-4 mb-6 flex justify-between items-end">
+            <div class="border-b-2 border-slate-800 pb-4 mb-4 flex justify-between items-end">
                 <div>
                     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker" class="h-6 mb-2">
                     <h1 class="text-2xl font-bold text-slate-900">싱가포르 3박 5일 프리미엄 VIP 일정표</h1>
@@ -127,7 +132,7 @@
             </div>
 
             <!-- 핵심 포인트 요약 -->
-            <div class="grid grid-cols-4 gap-2 mb-6 text-center text-xs font-bold border border-slate-200 bg-slate-50 p-3 rounded">
+            <div class="grid grid-cols-4 gap-2 mb-4 text-center text-sm font-bold border border-slate-200 bg-slate-50 p-3 rounded">
                 <div><i class="fa-solid fa-plane text-sky-600 mr-1"></i> 대한항공 왕복 (마일리지)</div>
                 <div><i class="fa-solid fa-hotel text-yellow-600 mr-1"></i> 전일정 5성급 호텔</div>
                 <div><i class="fa-solid fa-ban text-red-600 mr-1"></i> 쇼핑센터 방문 NO</div>
@@ -135,50 +140,50 @@
             </div>
 
             <!-- 일자별 일정표 테이블 -->
-            <table class="w-full border-collapse border border-slate-300 text-xs mb-6">
+            <table class="w-full border-collapse border border-slate-300 text-sm mb-4" style="flex-grow: 1; height: 100%;">
                 <thead>
-                    <tr class="bg-slate-100 text-slate-800">
-                        <th class="border border-slate-300 py-2 w-16 text-center">일자</th>
-                        <th class="border border-slate-300 py-2 px-3 text-left">상세 일정 및 관광지</th>
-                        <th class="border border-slate-300 py-2 w-20 text-center">식사</th>
+                    <tr class="bg-slate-100 text-slate-800 text-base">
+                        <th class="border border-slate-300 py-3 w-20 text-center">일자</th>
+                        <th class="border border-slate-300 py-3 px-4 text-left">상세 일정 및 관광지</th>
+                        <th class="border border-slate-300 py-3 w-24 text-center">식사</th>
                     </tr>
                 </thead>
-                <tbody class="align-top">
+                <tbody class="align-middle">
                     <!-- Day 1 -->
                     <tr>
-                        <td class="border border-slate-300 py-3 text-center font-bold">1일차<br><span class="text-[10px] font-normal text-slate-500">3/13(금)</span></td>
-                        <td class="border border-slate-300 py-3 px-3">
-                            <ul class="list-disc pl-4 space-y-1">
+                        <td class="border border-slate-300 py-4 text-center font-bold text-base">1일차<br><span class="text-xs font-normal text-slate-500">3/13(금)</span></td>
+                        <td class="border border-slate-300 py-4 px-4 leading-relaxed">
+                            <ul class="list-disc pl-5 space-y-1.5">
                                 <li><strong>[07:30]</strong> 정선군청 앞 전용차량 탑승 및 인천으로 이동</li>
                                 <li><strong>[14:35]</strong> 인천 국제공항 출발 (대한항공 KE643 / 약 6시간 50분 소요)</li>
                                 <li><strong>[20:25]</strong> 싱가포르 창이 공항 도착</li>
                                 <li>가이드 미팅 후 호텔로 이동하여 체크인 및 휴식</li>
                             </ul>
-                            <p class="mt-2 text-[10px] text-slate-500">🏨 <strong>숙박:</strong> 그랜드 콥톤 워터프론트(Grand Copthorne Waterfront) 또는 동급 5성급</p>
+                            <p class="mt-3 text-xs text-slate-500">🏨 <strong>숙박:</strong> 그랜드 콥톤 워터프론트(Grand Copthorne Waterfront) 또는 동급 5성급</p>
                         </td>
-                        <td class="border border-slate-300 py-3 text-center text-[10px] leading-tight space-y-1">
-                            <p>[조] 불포함</p>
-                            <p>[중] 불포함</p>
-                            <p>[석] 기내식</p>
+                        <td class="border border-slate-300 py-4 text-center text-sm leading-loose">
+                            <p class="text-slate-500">[조] 불포함</p>
+                            <p class="text-slate-500">[중] 불포함</p>
+                            <p class="font-bold">[석] 기내식</p>
                         </td>
                     </tr>
                     <!-- Day 2 -->
                     <tr>
-                        <td class="border border-slate-300 py-3 text-center font-bold">2일차<br><span class="text-[10px] font-normal text-slate-500">3/14(토)</span></td>
-                        <td class="border border-slate-300 py-3 px-3">
-                            <ul class="list-disc pl-4 space-y-1">
+                        <td class="border border-slate-300 py-4 text-center font-bold text-base">2일차<br><span class="text-xs font-normal text-slate-500">3/14(토)</span></td>
+                        <td class="border border-slate-300 py-4 px-4 leading-relaxed">
+                            <ul class="list-disc pl-5 space-y-1.5">
                                 <li>싱가포르 최고의 열대 식물원 <strong>보타닉 가든</strong> (유네스코 세계문화유산)</li>
                                 <li>싱가포르의 명동, <strong>오차드 로드 & 에메랄드 힐</strong> 관광</li>
                                 <li>현지 명물 해산물 요리인 <strong>칠리크랩 세트</strong>로 특별한 중식</li>
                                 <li>싱가포르의 랜드마크 <strong>가든스 바이 더 베이</strong> 완벽 투어
-                                    <ul class="list-circle pl-4 mt-0.5 text-[10px] text-slate-600">
+                                    <ul class="list-circle pl-5 mt-1 text-xs text-slate-600 space-y-1">
                                         <li>세계 최대 유리온실 '플라워 돔' & 거대한 인공 폭포 '클라우드 포레스트'</li>
                                         <li>환상적인 빛과 소리의 향연 <strong>슈퍼트리 쇼</strong> 관람</li>
                                     </ul>
                                 </li>
                             </ul>
                         </td>
-                        <td class="border border-slate-300 py-3 text-center text-[10px] leading-tight space-y-1">
+                        <td class="border border-slate-300 py-4 text-center text-sm leading-loose">
                             <p>[조] 호텔식</p>
                             <p class="font-bold text-red-600">[중] 칠리크랩</p>
                             <p class="font-bold text-orange-600">[석] 페라나칸</p>
@@ -186,24 +191,24 @@
                     </tr>
                     <!-- Day 3 -->
                     <tr>
-                        <td class="border border-slate-300 py-3 text-center font-bold">3일차<br><span class="text-[10px] font-normal text-slate-500">3/15(일)</span></td>
-                        <td class="border border-slate-300 py-3 px-3">
-                            <ul class="list-disc pl-4 space-y-1">
+                        <td class="border border-slate-300 py-4 text-center font-bold text-base">3일차<br><span class="text-xs font-normal text-slate-500">3/15(일)</span></td>
+                        <td class="border border-slate-300 py-4 px-4 leading-relaxed">
+                            <ul class="list-disc pl-5 space-y-1.5">
                                 <li>세계의 강을 테마로 한 생태 동물원 <strong>리버 원더스 (구 리버사파리)</strong>
-                                    <ul class="list-circle pl-4 mt-0.5 text-[10px] text-slate-600">
+                                    <ul class="list-circle pl-5 mt-1 text-xs text-slate-600 space-y-1">
                                         <li>아마존 리버 퀘스트(보트) 탑승 및 자이언트 판다 관람</li>
                                     </ul>
                                 </li>
                                 <li>미슐랭 빕구르망 선정 맛집 <strong>송파 바쿠테</strong> (싱가포르식 갈비탕) 중식</li>
                                 <li>이국적인 매력의 <strong>다민족 문화 지구</strong> 탐방
-                                    <ul class="list-circle pl-4 mt-0.5 text-[10px] text-slate-600">
+                                    <ul class="list-circle pl-5 mt-1 text-xs text-slate-600 space-y-1">
                                         <li>리틀 인디아, 아랍 스트리트, 술탄 모스크, 부기스 시장</li>
                                     </ul>
                                 </li>
                                 <li><strong>마리나 베이 샌즈 스카이파크 56층 전망대</strong> 관람 및 '더 숍스' 자유 쇼핑</li>
                             </ul>
                         </td>
-                        <td class="border border-slate-300 py-3 text-center text-[10px] leading-tight space-y-1">
+                        <td class="border border-slate-300 py-4 text-center text-sm leading-loose">
                             <p>[조] 호텔식</p>
                             <p class="font-bold text-amber-600">[중] 바쿠테</p>
                             <p class="font-bold text-stone-600">[석] 스팀보트</p>
@@ -211,13 +216,13 @@
                     </tr>
                     <!-- Day 4 -->
                     <tr>
-                        <td class="border border-slate-300 py-3 text-center font-bold">4일차<br><span class="text-[10px] font-normal text-slate-500">3/16(월)</span></td>
-                        <td class="border border-slate-300 py-3 px-3">
-                            <ul class="list-disc pl-4 space-y-1">
+                        <td class="border border-slate-300 py-4 text-center font-bold text-base">4일차<br><span class="text-xs font-normal text-slate-500">3/16(월)</span></td>
+                        <td class="border border-slate-300 py-4 px-4 leading-relaxed">
+                            <ul class="list-disc pl-5 space-y-1.5">
                                 <li>호텔 조식 후 여유로운 체크아웃 (11:00 경)</li>
                                 <li>싱가포르 시내투어: <strong>머라이언 공원, 에스플러네이드, 차이나타운 불아사</strong></li>
                                 <li>가장 완벽한 휴양지 <strong>센토사 섬 테마파크</strong> 투어
-                                    <ul class="list-circle pl-4 mt-0.5 text-[10px] text-slate-600">
+                                    <ul class="list-circle pl-5 mt-1 text-xs text-slate-600 space-y-1">
                                         <li>바다 위를 가로지르는 <strong>센토사 케이블카 탑승 (편도)</strong></li>
                                         <li>남녀노소 즐기는 짜릿한 액티비티 <strong>스카이라인 루지 (2회 탑승권)</strong></li>
                                     </ul>
@@ -226,7 +231,7 @@
                                 <li><strong>[22:30]</strong> 싱가포르 창이 공항 출발 (대한항공 KE644)</li>
                             </ul>
                         </td>
-                        <td class="border border-slate-300 py-3 text-center text-[10px] leading-tight space-y-1">
+                        <td class="border border-slate-300 py-4 text-center text-sm leading-loose">
                             <p>[조] 호텔식</p>
                             <p class="font-bold text-teal-600">[중] 얌차딤섬</p>
                             <p class="font-bold text-blue-600">[석] 호커센터</p>
@@ -234,20 +239,20 @@
                     </tr>
                     <!-- Day 5 -->
                     <tr>
-                        <td class="border border-slate-300 py-3 text-center font-bold">5일차<br><span class="text-[10px] font-normal text-slate-500">3/17(화)</span></td>
-                        <td class="border border-slate-300 py-3 px-3">
-                            <ul class="list-disc pl-4 space-y-1">
+                        <td class="border border-slate-300 py-4 text-center font-bold text-base">5일차<br><span class="text-xs font-normal text-slate-500">3/17(화)</span></td>
+                        <td class="border border-slate-300 py-4 px-4 leading-relaxed">
+                            <ul class="list-disc pl-5 space-y-1.5">
                                 <li><strong>[05:45]</strong> 인천 국제공항 도착 (수고하셨습니다.)</li>
                             </ul>
                         </td>
-                        <td class="border border-slate-300 py-3 text-center text-[10px] leading-tight space-y-1">
-                            <p>[조] 기내식</p>
+                        <td class="border border-slate-300 py-4 text-center text-sm leading-loose">
+                            <p class="font-bold">[조] 기내식</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
             
-            <div class="text-[10px] text-slate-500 text-center mt-4">
+            <div class="text-xs text-slate-500 text-center mt-2 font-medium">
                 * 상기 일정은 현지 사정(교통, 기상변화 등)에 의해 다소 변경될 수 있습니다.<br>
                 <strong>[System Powered by TOURMAKER] 본 일정표는 모두투어의 기획과 투어메이커의 기술 제휴로 제작되었습니다.</strong>
             </div>
